@@ -1,21 +1,618 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nameer Khan – MEP BIM Engineer</title>
-  <meta name="description" content="MEP BIM Engineer with 2+ years UK experience. Revit, Navisworks, fabrication drawings, ISO 19650.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAMEER KHAN · BIM/VDC ENGINEER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0e1a; --bg2:#0d1222; --bg3:#111828;
+  --text:#e8e4d8; --text-muted:#9a9690; --text-dim:#5a5650;
+  --accent:#2e7de9; --accent-bright:#4d9fff;
+  --grid:rgba(46,125,233,0.07); --grid-strong:rgba(46,125,233,0.14);
+  --rule:rgba(46,125,233,0.22); --rule-strong:rgba(46,125,233,0.38);
+  --green:#22c55e;
+  --mono:'JetBrains Mono','Courier New',monospace;
+  --sans:'Inter',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden;}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    linear-gradient(var(--grid-strong) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-strong) 1px,transparent 1px);
+  background-size:20px 20px,20px 20px,100px 100px,100px 100px;
+  pointer-events:none;
+}
+.crosshair{position:fixed;width:22px;height:22px;z-index:10;pointer-events:none;}
+.crosshair::before,.crosshair::after{content:'';position:absolute;background:var(--accent);opacity:.4;}
+.crosshair::before{width:100%;height:1px;top:50%;}
+.crosshair::after{height:100%;width:1px;left:50%;top:0;}
+.crosshair.tl{top:14px;left:14px;} .crosshair.tr{top:14px;right:14px;}
+.crosshair.bl{bottom:14px;left:14px;} .crosshair.br{bottom:14px;right:14px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule-strong);height:52px;}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 28px;height:52px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);}
+.nav-brand-text{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--text);white-space:nowrap;}
+.nav-brand-text span{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:4px;}
+.nav-link{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--text-muted);text-decoration:none;padding:6px 12px;border:1px solid transparent;transition:all .2s;text-transform:uppercase;}
+.nav-link:hover{color:var(--accent-bright);border-color:var(--rule);background:rgba(46,125,233,.06);}
+.nav-otw{display:flex;align-items:center;gap:7px;margin-left:10px;padding:5px 12px;border:1px solid rgba(34,197,94,.4);background:rgba(34,197,94,.05);font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--green);text-transform:uppercase;}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--green);position:relative;flex-shrink:0;}
+.pulse-dot::before{content:'';position:absolute;inset:-4px;border-radius:50%;background:var(--green);opacity:.3;animation:pulse 1.8s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.3;}50%{transform:scale(1.8);opacity:0;}}
+
+/* LAYOUT */
+section,#hero{position:relative;z-index:1;}
+.section-wrap{max-width:1200px;margin:0 auto;padding:0 32px;}
+.rule-line{height:1px;position:relative;z-index:1;background:linear-gradient(90deg,transparent,var(--rule-strong) 20%,var(--rule-strong) 80%,transparent);}
+.sec-header{display:flex;align-items:baseline;gap:14px;padding:52px 0 32px;}
+.sec-num{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--accent);opacity:.7;}
+.sec-title{font-family:var(--sans);font-size:20px;font-weight:700;letter-spacing:.02em;color:var(--text);text-transform:uppercase;}
+.sec-meta{font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:.1em;margin-left:auto;}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:52px;}
+.hero-inner{max-width:1200px;margin:0 auto;padding:60px 32px;width:100%;min-height:calc(100vh - 52px);display:flex;flex-direction:column;justify-content:center;}
+.hero-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.25em;color:var(--accent);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.hero-tag::before{content:'';width:32px;height:1px;background:var(--accent);}
+.hero-name{font-family:var(--sans);font-size:clamp(44px,7.5vw,88px);font-weight:800;line-height:.9;letter-spacing:-.03em;color:var(--text);text-transform:uppercase;margin-bottom:8px;}
+.hero-name .line2{color:var(--accent);display:block;}
+.hero-subtitle{font-family:var(--sans);font-size:clamp(13px,1.6vw,16px);font-weight:400;letter-spacing:.06em;color:var(--text-muted);margin:22px 0 40px;}
+.hero-subtitle .sep{color:var(--accent);margin:0 8px;opacity:.5;}
+.hero-grid{display:flex;gap:40px;align-items:flex-end;flex-wrap:wrap;}
+.hero-data{border:1px solid var(--rule);background:rgba(13,18,34,.7);min-width:300px;flex-shrink:0;}
+.hero-data-header{background:rgba(46,125,233,.08);border-bottom:1px solid var(--rule);padding:7px 14px;font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;}
+.hero-data-row{display:flex;border-bottom:1px solid rgba(46,125,233,.09);}
+.hero-data-row:last-child{border-bottom:none;}
+.hd-key{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.12em;color:var(--text-dim);text-transform:uppercase;padding:8px 14px;width:130px;flex-shrink:0;border-right:1px solid rgba(46,125,233,.09);display:flex;align-items:center;}
+.hd-val{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--text);padding:8px 14px;display:flex;align-items:center;}
+.hd-val.accent{color:var(--accent-bright);font-weight:600;}
+.hd-val.green{color:var(--green);font-weight:600;}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;padding:13px 28px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;border:none;}
+.btn-primary{background:var(--accent);color:#fff;border:1px solid var(--accent);}
+.btn-primary:hover{background:var(--accent-bright);border-color:var(--accent-bright);transform:translateY(-1px);box-shadow:0 4px 20px rgba(46,125,233,.4);}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--rule-strong);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent-bright);background:rgba(46,125,233,.05);}
+.hero-scroll{margin-top:48px;font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--text-dim);text-transform:uppercase;display:flex;align-items:center;gap:12px;}
+.hero-scroll::after{content:'';width:1px;height:36px;background:linear-gradient(to bottom,var(--accent),transparent);}
+
+/* PROFILE */
+#profile{padding-bottom:60px;}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.bio-text{font-family:var(--sans);font-size:15px;line-height:1.76;color:var(--text-muted);margin-bottom:18px;}
+.bio-text strong{color:var(--text);font-weight:600;}
+.spec-table{border:1px solid var(--rule);background:rgba(13,18,34,.5);overflow:hidden;}
+.spec-header{background:rgba(46,125,233,.09);border-bottom:1px solid var(--rule);padding:8px 16px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;}
+.spec-rev{font-size:9px;color:var(--text-dim);font-weight:400;}
+.spec-row{display:grid;grid-template-columns:148px 1fr;border-bottom:1px solid rgba(46,125,233,.08);}
+.spec-row:last-child{border-bottom:none;}
+.spec-key{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--text-dim);text-transform:uppercase;padding:10px 14px;border-right:1px solid rgba(46,125,233,.08);display:flex;align-items:center;background:rgba(46,125,233,.02);}
+.spec-val{padding:8px 12px;display:flex;flex-wrap:wrap;gap:5px;align-items:center;}
+.tag{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;padding:4px 9px;border:1px solid;text-transform:uppercase;}
+.tag-blue{color:var(--accent-bright);border-color:rgba(77,159,255,.3);background:rgba(46,125,233,.07);}
+.tag-dim{color:var(--text-muted);border-color:rgba(138,134,120,.22);background:rgba(138,134,120,.04);}
+.tag-green{color:var(--green);border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.05);}
+.tag-amber{color:#f59e0b;border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.05);}
+.tag-purple{color:#8b5cf6;border-color:rgba(139,92,246,.3);background:rgba(139,92,246,.05);}
+
+/* EXPERIENCE */
+#experience{padding-bottom:60px;}
+.timeline{position:relative;padding-left:32px;}
+.timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--accent),rgba(46,125,233,.08));}
+.tl-item{position:relative;margin-bottom:36px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-28px;top:6px;width:10px;height:10px;border:2px solid var(--accent);background:var(--bg);transform:rotate(45deg);}
+.tl-dot.active{background:var(--accent);box-shadow:0 0 12px var(--accent);}
+.tl-header{border:1px solid var(--rule);background:rgba(13,18,34,.55);margin-bottom:14px;}
+.tl-title-bar{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--rule);background:rgba(46,125,233,.06);flex-wrap:wrap;gap:8px;}
+.tl-role{font-family:var(--sans);font-size:17px;font-weight:700;color:var(--text);}
+.tl-period{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.15em;color:var(--accent);padding:4px 10px;border:1px solid rgba(46,125,233,.35);background:rgba(46,125,233,.07);white-space:nowrap;}
+.tl-sub-bar{display:flex;flex-wrap:wrap;}
+.tl-sub-cell{padding:7px 16px;border-right:1px solid rgba(46,125,233,.09);display:flex;flex-direction:column;gap:2px;}
+.tl-sub-cell:last-child{border-right:none;}
+.tl-sub-key{font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:var(--text-dim);text-transform:uppercase;font-weight:600;}
+.tl-sub-val{font-family:var(--sans);font-size:13px;color:var(--text-muted);font-weight:500;}
+.tl-summary{font-family:var(--sans);font-size:14px;line-height:1.74;color:var(--text-muted);}
+.tl-summary strong{color:var(--text);font-weight:600;}
+
+/* GALLERY */
+#drawings{padding-bottom:80px;}
+.drawing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;}
+.drawing-card{border:1px solid var(--rule);background:var(--bg2);cursor:pointer;transition:all .2s;overflow:hidden;}
+.drawing-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 28px rgba(46,125,233,.14);}
+.card-thumb{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--bg3);}
+.card-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:filter .2s;filter:brightness(.82) saturate(.8);}
+.drawing-card:hover .card-thumb img{filter:brightness(1) saturate(1);}
+.card-overlay{position:absolute;inset:0;background:rgba(10,14,26,.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
+.drawing-card:hover .card-overlay{opacity:1;}
+.expand-icon{width:40px;height:40px;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:18px;background:rgba(10,14,26,.8);}
+.card-placeholder{aspect-ratio:16/10;position:relative;background:var(--bg3);overflow:hidden;}
+.card-placeholder svg{position:absolute;inset:0;width:100%;height:100%;}
+.card-footer{display:flex;border-top:1px solid var(--rule);min-height:56px;}
+.cf-left{padding:10px 14px;flex:1;overflow:hidden;}
+.cf-title{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;}
+.cf-desc{font-family:var(--mono);font-size:8px;color:var(--text-dim);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(4,6,14,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
+.lightbox.open{opacity:1;pointer-events:all;}
+.lb-header{position:absolute;top:0;left:0;right:0;height:50px;background:rgba(10,14,26,.97);border-bottom:1px solid var(--rule);display:flex;align-items:center;padding:0 20px;justify-content:space-between;z-index:2;}
+.lb-title-text{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--text);}
+.lb-meta{display:flex;align-items:center;gap:16px;}
+.lb-counter{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:.15em;}
+.lb-zoom-hint{font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:.1em;opacity:.6;}
+.lb-close{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.15em;color:var(--text-muted);background:none;border:1px solid var(--rule);padding:6px 14px;cursor:pointer;text-transform:uppercase;transition:all .2s;}
+.lb-close:hover{color:var(--text);border-color:var(--accent);}
+
+/* Image viewport — clips the image, enables pan */
+.lb-viewport{
+  position:relative;
+  margin-top:50px;
+  margin-bottom:58px;
+  width:100vw;
+  height:calc(100vh - 108px);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+/* The image itself — transform controlled by JS */
+#lbImg{
+  display:block;
+  max-width:90vw;
+  max-height:calc(100vh - 140px);
+  object-fit:contain;
+  border:1px solid var(--rule);
+  transform-origin:center center;
+  transform:scale(1) translate(0px,0px);
+  transition:transform .1s ease-out;
+  cursor:zoom-in;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+#lbImg.zoomed{cursor:grab;}
+#lbImg.dragging{cursor:grabbing;transition:none;}
+
+/* Zoom controls */
+.lb-zoom-controls{position:absolute;bottom:70px;right:20px;display:flex;flex-direction:column;gap:4px;z-index:3;}
+.lb-zoom-btn{font-family:var(--mono);font-size:16px;font-weight:700;width:36px;height:36px;background:rgba(10,14,26,.9);border:1px solid var(--rule);color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;line-height:1;}
+.lb-zoom-btn:hover{border-color:var(--accent);color:var(--accent-bright);}
+
+.lb-footer{position:absolute;bottom:0;left:0;right:0;height:58px;background:rgba(10,14,26,.97);border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:2;}
+.lb-footer-title{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--text);}
+.lb-footer-nav{display:flex;gap:8px;}
+.lb-nav-btn{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--rule);background:transparent;color:var(--text-muted);cursor:pointer;transition:all .18s;}
+.lb-nav-btn:hover{border-color:var(--accent);color:var(--accent-bright);background:rgba(46,125,233,.08);}
+
+/* CONTACT */
+#contact{padding-bottom:80px;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.contact-statement{font-family:var(--sans);font-size:15px;color:var(--text-muted);line-height:1.76;margin-bottom:20px;}
+.contact-statement strong{color:var(--text);font-weight:600;}
+.contact-info-block{border:1px solid var(--rule);background:rgba(13,18,34,.6);}
+.contact-info-header{background:rgba(46,125,233,.08);border-bottom:1px solid var(--rule);padding:7px 16px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;}
+.contact-row{display:flex;border-bottom:1px solid rgba(46,125,233,.08);}
+.contact-row:last-child{border-bottom:none;}
+.cr-key{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.12em;color:var(--text-dim);text-transform:uppercase;padding:12px 14px;width:100px;flex-shrink:0;border-right:1px solid rgba(46,125,233,.09);display:flex;align-items:center;}
+.cr-val{font-family:var(--sans);font-size:14px;color:var(--text-muted);padding:12px 14px;display:flex;align-items:center;word-break:break-all;}
+.cr-val a{color:var(--accent-bright);text-decoration:none;transition:color .2s;}
+.cr-val a:hover{color:var(--text);text-decoration:underline;}
+
+/* FOOTER */
+footer{position:relative;z-index:1;border-top:1px solid var(--rule-strong);background:rgba(10,14,26,.97);}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 32px;height:46px;display:flex;align-items:center;justify-content:space-between;}
+.footer-left,.footer-right{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.16em;color:var(--text-dim);text-transform:uppercase;}
+.footer-left .hi{color:var(--accent);opacity:.7;}
+
+/* RESPONSIVE */
+@media(max-width:900px){.profile-grid,.contact-grid{grid-template-columns:1fr;}.hero-grid{flex-direction:column;align-items:flex-start;}.hero-data{min-width:0;width:100%;}}
+@media(max-width:700px){.nav-link{display:none;}.hero-name{font-size:48px;}.section-wrap{padding:0 18px;}.hero-inner{padding:80px 18px 40px;}.timeline::before,.tl-dot{display:none;}.timeline{padding-left:0;}.drawing-grid{grid-template-columns:1fr 1fr;}.footer-inner{flex-direction:column;justify-content:center;gap:4px;height:auto;padding:12px 18px;}.crosshair{display:none;}}
+@media(max-width:480px){.drawing-grid{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
+
+<div class="crosshair tl"></div>
+<div class="crosshair tr"></div>
+<div class="crosshair bl"></div>
+<div class="crosshair br"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">
+      <div class="nav-dot"></div>
+      <span class="nav-brand-text"><span>NAMEER KHAN</span> / BIM VDC ENGINEER</span>
+    </a>
+    <div class="nav-right">
+      <a href="#profile" class="nav-link">Profile</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#drawings" class="nav-link">Drawings</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <div class="nav-otw"><div class="pulse-dot"></div>Open to Work</div>
+    </div>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Portfolio · Rev 03 · 2026</div>
+    <div class="hero-name">Nameer<span class="line2">Khan</span></div>
+    <div class="hero-subtitle">BIM Engineer <span class="sep">·</span> MEP Coordination <span class="sep">·</span> UK Project Experience</div>
+    <div class="hero-grid">
+      <div class="hero-data">
+        <div class="hero-data-header">// ENGINEER DATA BLOCK — REV 03</div>
+        <div class="hero-data-row"><div class="hd-key">Experience</div><div class="hd-val accent">2+ Years UK</div></div>
+        <div class="hero-data-row"><div class="hd-key">Discipline</div><div class="hd-val">MEP VDC</div></div>
+        <div class="hero-data-row"><div class="hd-key">Standard</div><div class="hd-val">ISO 19650</div></div>
+        <div class="hero-data-row"><div class="hd-key">Based In</div><div class="hd-val">Mumbai IN</div></div>
+        <div class="hero-data-row"><div class="hd-key">MSc Grade</div><div class="hd-val green">Merit · 65.6%</div></div>
+      </div>
+      <div class="hero-cta">
+        <a href="#drawings" class="btn btn-primary">↓ View Drawings</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch →</a>
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll to explore</div>
+  </div>
+</section>
+
+<div class="rule-line"></div>
+
+<section id="profile">
+  <div class="section-wrap">
+    <div class="sec-header"><span class="sec-num">01</span><h2 class="sec-title">Profile</h2><span class="sec-meta">NK-PORTFOLIO-2026 · SHEET 01 OF 04</span></div>
+    <div class="profile-grid">
+      <div>
+        <p class="bio-text">BIM/VDC Engineer with <strong>2+ years in the UK construction industry</strong>, delivering MEP coordination, fabrication drawings, and ISO 19650-compliant BIM outputs at Merit, Newcastle. Specialised in Revit MEP, clash detection, spool sheets, and PAM sheet production across NHS healthcare projects.</p>
+        <p class="bio-text">Holds an <strong>MSc Engineering Management (Merit, 65.6%)</strong> from Northumbria University and a BEng in Mechanical Engineering. Currently seeking MEP BIM Coordinator and VDC Engineer roles — open to the right role, regardless of location.</p>
+      </div>
+      <div>
+        <div class="spec-table">
+          <div class="spec-header">SPECIFICATION BLOCK <span class="spec-rev">REV 03 · IFC</span></div>
+          <div class="spec-row"><div class="spec-key">Primary Tools</div><div class="spec-val"><span class="tag tag-blue">Revit MEP</span><span class="tag tag-blue">Navisworks</span><span class="tag tag-blue">AutoCAD</span></div></div>
+          <div class="spec-row"><div class="spec-key">Platforms</div><div class="spec-val"><span class="tag tag-dim">BIM 360</span><span class="tag tag-dim">ACC</span><span class="tag tag-dim">ProjectWise</span><span class="tag tag-dim">Revizto</span></div></div>
+          <div class="spec-row"><div class="spec-key">Standards</div><div class="spec-val"><span class="tag tag-green">ISO 19650</span><span class="tag tag-green">IFC4</span><span class="tag tag-green">BS 1192</span></div></div>
+          <div class="spec-row"><div class="spec-key">Deliverables</div><div class="spec-val"><span class="tag tag-blue">Spool Sheets</span><span class="tag tag-purple">PAM Sheets</span><span class="tag tag-amber">Fab Drawings</span></div></div>
+          <div class="spec-row"><div class="spec-key">Coordination</div><div class="spec-val"><span class="tag tag-dim">Clash Detection</span><span class="tag tag-dim">Model Federation</span></div></div>
+          <div class="spec-row"><div class="spec-key">Sector</div><div class="spec-val"><span class="tag tag-green">Healthcare (NHS)</span><span class="tag tag-dim">Commercial</span></div></div>
+          <div class="spec-row"><div class="spec-key">Education</div><div class="spec-val"><span class="tag tag-blue">MSc Eng Mgmt</span><span class="tag tag-dim">BEng Mech Eng</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule-line"></div>
+
+<section id="experience">
+  <div class="section-wrap">
+    <div class="sec-header"><span class="sec-num">02</span><h2 class="sec-title">Experience</h2><span class="sec-meta">NK-PORTFOLIO-2026 · SHEET 02 OF 04</span></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot active"></div>
+        <div class="tl-header">
+          <div class="tl-title-bar"><div class="tl-role">VDC BIM Engineer</div><div class="tl-period">JUN 2024 — NOV 2025</div></div>
+          <div class="tl-sub-bar">
+            <div class="tl-sub-cell"><span class="tl-sub-key">Company</span><span class="tl-sub-val">Merit · Newcastle, UK</span></div>
+            <div class="tl-sub-cell"><span class="tl-sub-key">Discipline</span><span class="tl-sub-val">MEP VDC / BIM</span></div>
+            <div class="tl-sub-cell"><span class="tl-sub-key">Standard</span><span class="tl-sub-val">ISO 19650</span></div>
+          </div>
+        </div>
+        <p class="tl-summary">Delivered fully coordinated Revit MEP models, spool sheets, PAM sheets, and fabrication drawings for NHS healthcare projects — from model federation and clash detection through to construction-issue packages. Worked with point cloud data for existing building surveys and maintained ISO 19650 compliance across all CDE outputs.</p>
+      </div>
+      <div class="tl-item" style="margin-top:32px">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div class="tl-title-bar"><div class="tl-role">VDC Production Mechanical Graduate</div><div class="tl-period">JUN 2023 — JUN 2024</div></div>
+          <div class="tl-sub-bar">
+            <div class="tl-sub-cell"><span class="tl-sub-key">Company</span><span class="tl-sub-val">Merit · Newcastle, UK</span></div>
+            <div class="tl-sub-cell"><span class="tl-sub-key">Level</span><span class="tl-sub-val">Graduate</span></div>
+            <div class="tl-sub-cell"><span class="tl-sub-key">Focus</span><span class="tl-sub-val">Mechanical / Pipework</span></div>
+          </div>
+        </div>
+        <p class="tl-summary">Modelled HVAC, DHW/BCW, and chilled water systems in Revit MEP, producing isometric spool sets and PAM pipe drawings used directly by the fabrication team. Developed end-to-end understanding of the VDC production workflow from design coordination to construction-ready issue.</p>
+      </div>
+      <div class="tl-item" style="margin-top:32px">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div class="tl-title-bar"><div class="tl-role">Engineering Intern</div><div class="tl-period">JAN 2022 — JUN 2022</div></div>
+          <div class="tl-sub-bar">
+            <div class="tl-sub-cell"><span class="tl-sub-key">Company</span><span class="tl-sub-val">Daikin</span></div>
+            <div class="tl-sub-cell"><span class="tl-sub-key">Focus</span><span class="tl-sub-val">HVAC Systems</span></div>
+          </div>
+        </div>
+        <p class="tl-summary">Supported the engineering team with technical documentation and CAD layouts for VRV and split-type HVAC systems, building foundational knowledge of mechanical HVAC principles that directly informed later MEP BIM work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule-line"></div>
+
+<section id="drawings">
+  <div class="section-wrap">
+    <div class="sec-header"><span class="sec-num">03</span><h2 class="sec-title">Drawing Gallery</h2><span class="sec-meta">NK-PORTFOLIO-2026 · SHEET 03 OF 04</span></div>
+    <div class="drawing-grid" id="drawingGrid">
+      <div class="drawing-card" data-index="0"><div class="card-thumb"><img src="ahu_pod_setout_1.jpg" alt="AHU Pod Setting-Out Drawing 1" onerror="this.parentElement.innerHTML=getBP('AHU SETOUT 1')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">AHU Pod Setting-Out Drawing 1</div><div class="cf-desc">AHU Pod · Setting-out</div></div></div></div>
+      <div class="drawing-card" data-index="1"><div class="card-thumb"><img src="hvac_pam.jpg" alt="HVAC PAM" onerror="this.parentElement.innerHTML=getBP('HVAC PAM')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">HVAC PAM</div><div class="cf-desc">HVAC preassembled module</div></div></div></div>
+      <div class="drawing-card" data-index="2"><div class="card-thumb"><img src="water_heater_pam.jpg" alt="Water Heater PAM" onerror="this.parentElement.innerHTML=getBP('WATER HEATER')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">Water Heater PAM</div><div class="cf-desc">Water heater module</div></div></div></div>
+      <div class="drawing-card" data-index="3"><div class="card-thumb"><img src="multiservice_pam_header.jpg" alt="Multi-Service PAM Header" onerror="this.parentElement.innerHTML=getBP('MULTI PAM')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">Multi-Service PAM Header</div><div class="cf-desc">HVAC, Electrical, Pipework</div></div></div></div>
+      <div class="drawing-card" data-index="4"><div class="card-thumb"><img src="pam_frame_header.jpg" alt="PAM Frame Header" onerror="this.parentElement.innerHTML=getBP('PAM FRAME')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">PAM Frame Header</div><div class="cf-desc">Frame header module</div></div></div></div>
+      <div class="drawing-card" data-index="5"><div class="card-thumb"><img src="bathroom_pod_1.jpg" alt="Bathroom Pod 1" onerror="this.parentElement.innerHTML=getBP('BATHROOM 1')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">Bathroom Pod 1</div><div class="cf-desc">Full services pod</div></div></div></div>
+      <div class="drawing-card" data-index="6"><div class="card-thumb"><img src="bathroom_pod_2.jpg" alt="Bathroom Pod 2" onerror="this.parentElement.innerHTML=getBP('BATHROOM 2')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">Bathroom Pod 2</div><div class="cf-desc">Full services pod</div></div></div></div>
+      <div class="drawing-card" data-index="7"><div class="card-thumb"><img src="bathroom_pod_spools.jpg" alt="Bathroom Pod Pipe Spools" onerror="this.parentElement.innerHTML=getBP('POD SPOOLS')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">Bathroom Pod Pipe Spools</div><div class="cf-desc">Pipe spool set</div></div></div></div>
+      <div class="drawing-card" data-index="8"><div class="card-thumb"><img src="ahu_pod_setout_2.jpg" alt="AHU Pod Setting-Out Drawing 2" onerror="this.parentElement.innerHTML=getBP('AHU SETOUT 2')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">AHU Pod Setting-Out Drawing 2</div><div class="cf-desc">AHU Pod · Setting-out</div></div></div></div>
+      <div class="drawing-card" data-index="9"><div class="card-thumb"><img src="ahu_pump_skid.jpg" alt="AHU Pod Pump Skid" onerror="this.parentElement.innerHTML=getBP('PUMP SKID')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">AHU Pod Pump Skid</div><div class="cf-desc">Pump skid assembly</div></div></div></div>
+      <div class="drawing-card" data-index="10"><div class="card-thumb"><img src="ahu_pump_skid_frame.jpg" alt="AHU Pod Pump Skid Frame" onerror="this.parentElement.innerHTML=getBP('SKID FRAME')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">AHU Pod Pump Skid Frame</div><div class="cf-desc">Pump skid frame</div></div></div></div>
+      <div class="drawing-card" data-index="11"><div class="card-thumb"><img src="ahu_pump_skid_spool.jpg" alt="AHU Pod Pump Skid Spool" onerror="this.parentElement.innerHTML=getBP('SKID SPOOL')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">AHU Pod Pump Skid Spool</div><div class="cf-desc">Pump skid spool</div></div></div></div>
+      <div class="drawing-card" data-index="12"><div class="card-thumb"><img src="HVAC_plan.jpg" alt="HVAC Coordination Plan" onerror="this.parentElement.innerHTML=getBP('HVAC PLAN')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">HVAC Coordination Plan</div><div class="cf-desc">Coordinated HVAC layout</div></div></div></div>
+      <div class="drawing-card" data-index="13"><div class="card-thumb"><img src="HVAC_schematic.jpg" alt="HVAC Design Schematic Reference" onerror="this.parentElement.innerHTML=getBP('HVAC SCHEMATIC')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">HVAC Design Schematic Reference</div><div class="cf-desc">Design schematic</div></div></div></div>
+      <div class="drawing-card" data-index="14"><div class="card-thumb"><img src="frame_fab.jpg" alt="Metsec Channel Frame Drawing" onerror="this.parentElement.innerHTML=getBP('FRAME FAB')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">Metsec Channel Frame Drawing</div><div class="cf-desc">Steel frame fabrication</div></div></div></div>
+      <div class="drawing-card" data-index="15"><div class="card-thumb"><img src="wall_transition.jpg" alt="Wall Transition Module PAM" onerror="this.parentElement.innerHTML=getBP('WALL TRANS')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">Wall Transition Module PAM</div><div class="cf-desc">Preassembled module</div></div></div></div>
+      <div class="drawing-card" data-index="16"><div class="card-thumb"><img src="pams_fab.jpg" alt="Multiservice PAM" onerror="this.parentElement.innerHTML=getBP('MULTI PAM')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">Multiservice PAM</div><div class="cf-desc">HVAC, Electrical, Pipework</div></div></div></div>
+      <div class="drawing-card" data-index="17"><div class="card-thumb"><img src="spool1.jpg" alt="DHW & BCW Isometric Spool Set" onerror="this.parentElement.innerHTML=getBP('SPOOL ISO')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">DHW & BCW Isometric Spool Set</div><div class="cf-desc">Isometric spool drawings</div></div></div></div>
+      <div class="drawing-card" data-index="18"><div class="card-thumb"><img src="spool2.jpg" alt="Primary PAM Pipe Spool Set" onerror="this.parentElement.innerHTML=getBP('SPOOL PAM')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">Primary PAM Pipe Spool Set</div><div class="cf-desc">PAM pipe spool sheets</div></div></div></div>
+      <div class="drawing-card" data-index="19"><div class="card-thumb"><img src="bathroom_pod.jpg" alt="Bathroom Pod Full Services PAM" onerror="this.parentElement.innerHTML=getBP('BATHROOM POD')"><div class="card-overlay"><div class="expand-icon">⤢</div></div></div><div class="card-footer"><div class="cf-left"><div class="cf-title">Bathroom Pod Full Services PAM</div><div class="cf-desc">Full services pod module</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-header">
+    <div class="lb-title-text" id="lbTitle">Drawing Title</div>
+    <div class="lb-meta">
+      <span class="lb-zoom-hint">Scroll to zoom · Drag to pan · Double-click to reset</span>
+      <span class="lb-counter" id="lbCounter">1 / 20</span>
+    </div>
+    <button class="lb-close" id="lbClose">✕ Close [ESC]</button>
+  </div>
+
+  <div class="lb-viewport" id="lbViewport">
+    <img id="lbImg" src="" alt="">
+  </div>
+
+  <div class="lb-zoom-controls">
+    <button class="lb-zoom-btn" id="zoomIn" title="Zoom in">+</button>
+    <button class="lb-zoom-btn" id="zoomOut" title="Zoom out">−</button>
+    <button class="lb-zoom-btn" id="zoomReset" title="Reset zoom" style="font-size:11px;letter-spacing:0">1:1</button>
+  </div>
+
+  <div class="lb-footer">
+    <div class="lb-footer-title" id="lbFooterTitle">Title</div>
+    <div class="lb-footer-nav">
+      <button class="lb-nav-btn" id="lbPrev">← Prev</button>
+      <button class="lb-nav-btn" id="lbNext">Next →</button>
+    </div>
+  </div>
+</div>
+
+<div class="rule-line"></div>
+
+<section id="contact">
+  <div class="section-wrap">
+    <div class="sec-header"><span class="sec-num">04</span><h2 class="sec-title">Contact</h2><span class="sec-meta">NK-PORTFOLIO-2026 · SHEET 04 OF 04</span></div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-statement">Actively seeking <strong>MEP BIM Coordinator</strong> and <strong>VDC Engineer</strong> roles, with an eye toward project management. Open to the right role, <strong>regardless of location</strong>.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;">
+          <span class="tag tag-green">Open to opportunities worldwide</span>
+          <span class="tag tag-green">Open to Relocation</span>
+        </div>
+      </div>
+      <div>
+        <div class="contact-info-block">
+          <div class="contact-info-header">// CONTACT — NK-2026</div>
+          <div class="contact-row"><div class="cr-key">Email</div><div class="cr-val"><a href="mailto:knameer767@gmail.com">knameer767@gmail.com</a></div></div>
+          <div class="contact-row"><div class="cr-key">LinkedIn</div><div class="cr-val"><a href="https://linkedin.com/in/nameer-khan-015765191" target="_blank" rel="noopener">linkedin.com/in/nameer-khan-015765191</a></div></div>
+          <div class="contact-row"><div class="cr-key">Phone</div><div class="cr-val"><a href="tel:+919967140150">+91 9967 140 150</a></div></div>
+          <div class="contact-row"><div class="cr-key">Based In</div><div class="cr-val">Mumbai, Maharashtra · IN</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">NK-PORTFOLIO-2026 · <span class="hi">REV 03</span> · A1</div>
+    <div class="footer-right">NAMEER KHAN · BIM/VDC ENGINEER</div>
+  </div>
+</footer>
+
 <script>
-// Redirect to new portfolio file
-window.location.href = "nameer_portfolio_final.html";
+/* ── Blueprint placeholder ── */
+function getBP(label) {
+  const id = 'g'+label.replace(/\s/g,'');
+  return `<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+    <defs><pattern id="${id}" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0L0 0 0 16" fill="none" stroke="rgba(46,125,233,.1)" stroke-width=".5"/></pattern></defs>
+    <rect width="320" height="200" fill="#0d1222"/><rect width="320" height="200" fill="url(#${id})"/>
+    <rect x="10" y="10" width="300" height="180" fill="none" stroke="rgba(46,125,233,.28)" stroke-width=".8"/>
+    <line x1="10" y1="10" x2="22" y2="10" stroke="rgba(46,125,233,.6)" stroke-width="1"/>
+    <line x1="10" y1="10" x2="10" y2="22" stroke="rgba(46,125,233,.6)" stroke-width="1"/>
+    <line x1="310" y1="10" x2="298" y2="10" stroke="rgba(46,125,233,.6)" stroke-width="1"/>
+    <line x1="310" y1="10" x2="310" y2="22" stroke="rgba(46,125,233,.6)" stroke-width="1"/>
+    <line x1="10" y1="190" x2="22" y2="190" stroke="rgba(46,125,233,.6)" stroke-width="1"/>
+    <line x1="10" y1="190" x2="10" y2="178" stroke="rgba(46,125,233,.6)" stroke-width="1"/>
+    <line x1="310" y1="190" x2="298" y2="190" stroke="rgba(46,125,233,.6)" stroke-width="1"/>
+    <line x1="310" y1="190" x2="310" y2="178" stroke="rgba(46,125,233,.6)" stroke-width="1"/>
+    <circle cx="160" cy="96" r="28" fill="none" stroke="rgba(46,125,233,.2)" stroke-width=".8" stroke-dasharray="4 3"/>
+    <line x1="160" y1="68" x2="160" y2="124" stroke="rgba(46,125,233,.16)" stroke-width=".5"/>
+    <line x1="132" y1="96" x2="188" y2="96" stroke="rgba(46,125,233,.16)" stroke-width=".5"/>
+    <text x="160" y="148" font-family="'JetBrains Mono',monospace" font-size="9" fill="rgba(46,125,233,.4)" text-anchor="middle" letter-spacing="2">${label}</text>
+  </svg>`;
+}
+
+/* ── Drawing data ── */
+const drawings = [
+  {src:'ahu_pod_setout_1.jpg',    title:'AHU Pod Setting-Out Drawing 1'},
+  {src:'hvac_pam.jpg',            title:'HVAC PAM'},
+  {src:'water_heater_pam.jpg',    title:'Water Heater PAM'},
+  {src:'multiservice_pam_header.jpg', title:'Multi-Service PAM Header'},
+  {src:'pam_frame_header.jpg',    title:'PAM Frame Header'},
+  {src:'bathroom_pod_1.jpg',      title:'Bathroom Pod 1'},
+  {src:'bathroom_pod_2.jpg',      title:'Bathroom Pod 2'},
+  {src:'bathroom_pod_spools.jpg', title:'Bathroom Pod Pipe Spools'},
+  {src:'ahu_pod_setout_2.jpg',    title:'AHU Pod Setting-Out Drawing 2'},
+  {src:'ahu_pump_skid.jpg',       title:'AHU Pod Pump Skid'},
+  {src:'ahu_pump_skid_frame.jpg', title:'AHU Pod Pump Skid Frame'},
+  {src:'ahu_pump_skid_spool.jpg', title:'AHU Pod Pump Skid Spool'},
+  {src:'HVAC_plan.jpg',           title:'HVAC Coordination Plan'},
+  {src:'HVAC_schematic.jpg',      title:'HVAC Design Schematic Reference'},
+  {src:'frame_fab.jpg',           title:'Metsec Channel Frame Drawing'},
+  {src:'wall_transition.jpg',     title:'Wall Transition Module PAM'},
+  {src:'pams_fab.jpg',            title:'Multiservice PAM'},
+  {src:'spool1.jpg',              title:'DHW & BCW Isometric Spool Set'},
+  {src:'spool2.jpg',              title:'Primary PAM Pipe Spool Set'},
+  {src:'bathroom_pod.jpg',        title:'Bathroom Pod Full Services PAM'},
+];
+
+/* ── Lightbox state ── */
+const lb        = document.getElementById('lightbox');
+const lbImg     = document.getElementById('lbImg');
+const lbTitle   = document.getElementById('lbTitle');
+const lbFTitle  = document.getElementById('lbFooterTitle');
+const lbCounter = document.getElementById('lbCounter');
+const viewport  = document.getElementById('lbViewport');
+let currentIdx  = 0;
+
+/* ── Zoom / pan state ── */
+let scale = 1, tx = 0, ty = 0;
+const MIN_SCALE = 1, MAX_SCALE = 8;
+
+function applyTransform(animate) {
+  lbImg.style.transition = animate ? 'transform .15s ease-out' : 'none';
+  lbImg.style.transform  = `scale(${scale}) translate(${tx/scale}px,${ty/scale}px)`;
+  lbImg.classList.toggle('zoomed', scale > 1);
+}
+
+function resetZoom() { scale=1; tx=0; ty=0; applyTransform(true); }
+
+function clampPan() {
+  if (scale <= 1) { tx=0; ty=0; return; }
+  const iw = lbImg.offsetWidth  * scale;
+  const ih = lbImg.offsetHeight * scale;
+  const vw = viewport.offsetWidth;
+  const vh = viewport.offsetHeight;
+  const maxX = Math.max(0,(iw-vw)/2);
+  const maxY = Math.max(0,(ih-vh)/2);
+  tx = Math.max(-maxX, Math.min(maxX, tx));
+  ty = Math.max(-maxY, Math.min(maxY, ty));
+}
+
+/* Scroll to zoom */
+viewport.addEventListener('wheel', e => {
+  e.preventDefault();
+  const delta = e.deltaY < 0 ? 1.12 : 1/1.12;
+  scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * delta));
+  clampPan();
+  applyTransform(false);
+}, {passive:false});
+
+/* Button zoom */
+document.getElementById('zoomIn').addEventListener('click',  () => { scale=Math.min(MAX_SCALE,scale*1.4); clampPan(); applyTransform(true); });
+document.getElementById('zoomOut').addEventListener('click', () => { scale=Math.max(MIN_SCALE,scale/1.4); clampPan(); applyTransform(true); });
+document.getElementById('zoomReset').addEventListener('click', resetZoom);
+
+/* Double-click reset */
+lbImg.addEventListener('dblclick', resetZoom);
+
+/* Drag to pan */
+let dragging=false, startX=0, startY=0, startTx=0, startTy=0;
+lbImg.addEventListener('mousedown', e => {
+  if (scale <= 1) return;
+  e.preventDefault();
+  dragging=true; startX=e.clientX; startY=e.clientY; startTx=tx; startTy=ty;
+  lbImg.classList.add('dragging');
+});
+window.addEventListener('mousemove', e => {
+  if (!dragging) return;
+  tx = startTx + (e.clientX - startX);
+  ty = startTy + (e.clientY - startY);
+  clampPan();
+  applyTransform(false);
+});
+window.addEventListener('mouseup', () => { dragging=false; lbImg.classList.remove('dragging'); });
+
+/* Touch pinch-to-zoom */
+let lastDist = 0;
+viewport.addEventListener('touchstart', e => { if(e.touches.length===2) lastDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY); }, {passive:true});
+viewport.addEventListener('touchmove', e => {
+  if(e.touches.length===2){
+    e.preventDefault();
+    const dist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+    scale=Math.min(MAX_SCALE,Math.max(MIN_SCALE,scale*(dist/lastDist)));
+    lastDist=dist; clampPan(); applyTransform(false);
+  }
+},{passive:false});
+
+/* ── Open / close ── */
+function openLightbox(idx) {
+  currentIdx = idx;
+  resetZoom();
+  const d = drawings[idx];
+  lbImg.src = d.src;
+  lbTitle.textContent = d.title;
+  lbFTitle.textContent = d.title;
+  lbCounter.textContent = (idx+1)+' / '+drawings.length;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() { lb.classList.remove('open'); document.body.style.overflow=''; }
+
+function navigate(dir) {
+  currentIdx = (currentIdx + dir + drawings.length) % drawings.length;
+  resetZoom();
+  const d = drawings[currentIdx];
+  lbImg.src = d.src;
+  lbTitle.textContent = d.title;
+  lbFTitle.textContent = d.title;
+  lbCounter.textContent = (currentIdx+1)+' / '+drawings.length;
+}
+
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); navigate(-1); });
+document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); navigate(1); });
+
+lb.addEventListener('click', e => { if(e.target===lb || e.target===viewport) closeLightbox(); });
+
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key==='Escape')      closeLightbox();
+  if (e.key==='ArrowLeft')   navigate(-1);
+  if (e.key==='ArrowRight')  navigate(1);
+  if (e.key==='+' || e.key==='=') { scale=Math.min(MAX_SCALE,scale*1.3); clampPan(); applyTransform(true); }
+  if (e.key==='-')           { scale=Math.max(MIN_SCALE,scale/1.3); clampPan(); applyTransform(true); }
+  if (e.key==='0')           resetZoom();
+});
+
+/* ── Card click listeners ── */
+document.querySelectorAll('.drawing-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const idx = parseInt(card.getAttribute('data-index'));
+    openLightbox(idx);
+  });
+});
+
+/* Smooth nav */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
 </script>
-<noscript>
-  <meta http-equiv="refresh" content="0; url=nameer_portfolio_final.html">
-</noscript>
 </body>
 </html>
